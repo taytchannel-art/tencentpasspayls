@@ -9,6 +9,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for the Telegram Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1276410761282073');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1276410761282073&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
     <style>
         body {
             background-color: #000000;
@@ -97,22 +116,12 @@
     <script>
         // Simple Countdown Logic
         function updateCountdown() {
-            // Setting a target date 5 seconds from now
-            const target = new Date().getTime() + (5 * 1000);
+            // Setting a target date 24 hours from now for demonstration
+            const target = new Date().getTime() + (24 * 60 * 60 * 1000);
 
-            const update = () => {
+            setInterval(() => {
                 const now = new Date().getTime();
                 const diff = target - now;
-
-                if (diff <= 0) {
-                    clearInterval(intervalId);
-                    document.getElementById('days').innerText = '00';
-                    document.getElementById('hours').innerText = '00';
-                    document.getElementById('minutes').innerText = '00';
-                    document.getElementById('seconds').innerText = '00';
-                    window.location.href = "https://t.me/+Al8NxWjmoj40MmVl";
-                    return;
-                }
 
                 const d = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -123,10 +132,7 @@
                 document.getElementById('hours').innerText = h.toString().padStart(2, '0');
                 document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
                 document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
-            };
-
-            update(); // Call once immediately to update initial UI
-            const intervalId = setInterval(update, 1000);
+            }, 1000);
         }
 
         updateCountdown();
